@@ -1,7 +1,6 @@
 /*Grunddesign*/
 body{
 	background-color: #000000;
-	font: green;
 	color: green;
 }
 
@@ -43,23 +42,22 @@ menu a:focus{
 main {
 	background-color: #333333;
 	position: absolute;
-	width: 45%;
-	height: 25%;
+	width: 50%;
+	height: 30%;
 	right: 0;
-	left: 55%;
+	left: 50%;
 	top: 10%;
-	overflow: auto;
 }
 
 /*Tabelle*/
 #status-overview,thead,tbody,th,tr,td{
 	border: 1px solid;
-    	border-collapse: collapse;
+    border-collapse: collapse;
 	text-align: center;
 }
 
-/*Zeile beim Hovern*/
-tr:hover{
+/*Zeile im body beim Hovern*/
+tbody tr:hover{
 	background-color: #000000;
 }
 
@@ -71,6 +69,7 @@ section.content{
 	margin-top: -100%;
 	-webkit-transition: all 0.7s ease;
 	transition: all 0.7s ease;
+	overflow: auto;
 }
 
 /*Für ausgewählten inhalt*/
@@ -94,6 +93,26 @@ li {
 a{
 	color: green;
 	text-decoration: none;
+}
+
+/*Grundeinstellung für buttons*/
+button {
+    background-color: green;
+	padding: 4px;
+    border: none;
+    color: white;
+}
+
+/*button in der status tabelle*/
+.mainButton{
+	width: 100%;
+	height: 100%;
+}
+
+/*Button zum tasks schicken*/
+.tasksButton {
+	width: 25%;
+	height: 100%;
 }
 
 /*Fuß zeile*/

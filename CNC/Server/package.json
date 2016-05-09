@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "node --harmony ./bin/cnc-server.js 8080",
-    "build": "babel src -d lib"
+    "build": "node ./node_modules/babel-cli/bin/babel.js src -d lib"
   },
   "main": "./lib/cnc-server.js",
   "bugs": {
@@ -32,12 +32,13 @@
     "bot"
   ],
   "dependencies": {
-    "babel-polyfill": "^6.7.2",
+    "babel-polyfill": "*",
     "koa": "next"
   },
   "devDependencies": {
-    "babel-cli": "^6.6.5",
-    "babel-plugin-transform-async-to-generator": "^6.7.0",
-    "babel-plugin-transform-es2015-arrow-functions": "^6.5.2"
+    "babel-cli": "*",
+	"babel-preset-es2015": "*",
+    "babel-plugin-transform-async-to-generator": "*",
+    "babel-plugin-transform-es2015-arrow-functions": "*"
   }
 }

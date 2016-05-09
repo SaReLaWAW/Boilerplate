@@ -10,70 +10,79 @@
     <link rel="stylesheet" type="text/CSS" href="./design/index.css">
     <link rel="stylesheet" type="text/CSS" href="./design/print.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="refresh" content="50">
+	<!-- spezial Methoden der api von Javaskript-->
+	<script language="javascript" type="text/javascript" src="./jsdata/filltable.js"></script>
+	<script language="javascript" type="text/javascript" src="./jsdata/toogleButton.js"></script>
+	<script language="javascript" type="text/javascript" src="./jsdata/sortTable.js"></script>
+	<script language="javascript" type="text/javascript" src="./jsdata/postRequest.js"></script>
+	<script language="javascript" type="text/javascript" src="./jsdata/fillTasks.js"></script>
+	<script language="javascript" type="text/javascript" src="./jsdata/aktualisieren.js"></script>
 	<title>Botnet</title>
 </head>
 
 <body>
-<header>
-    <h1>CNC Interface</h1>
-</header>
-<aside>
-    <menu>
-		<ul>
-			<li><a href="#status">Status</a></li>
-			<li><a href="#tasks">Tasks</a></li>
-		</ul>
-    </menu>
-</aside>
-<main>
-    <section id="status" class="content">
-        <table id="status-overview">
-            <thead>
-            <tr>
-                <th>Workload</th>
-                <th>IP</th>
-                <th>Task</th>
-                <th>Status</th>
-				<th>Start/Stop</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-					<td colspan=4> No BOTS active yet</td>
-					<td><button type="button" id="onoff" disabled="disabled">Start</button></td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>2a02:8071:aa2:fa00:910d:8f43:8516:a59/64</td>
-					<td>0</td>
-					<td>4</td>
-					<td><button type="button" id="onoff" disabled="disabled">Start</button></td>
-				</tr>
-            </tbody>
-        </table>
-    </section>
-    <section id="tasks" class="content">
-        TODO:Task
-    </section>
-</main>
+	<header>
+		<h1>CNC Interface</h1>
+	</header>
+	<aside>
+		<menu>
+			<ul>
+				<li><a href="#status">Status</a></li>
+				<li><a href="#tasks">Tasks</a></li>
+			</ul>
+		</menu>
+	</aside>
+	<!-- Erstellung einer Tabelle mit 5 Spalten -->
+	<main>
+		<section id="status" class="content">
+			<table id="status-overview">
+				<thead>
+					<tr>
+						<th onclick="sortierenTabelle('id', false);">ID  &#8593 &#8595 </th>
+						<th onclick="sortierenTabelle('ip', false);">IP  &#8593 &#8595 </th>
+						<th onclick="sortierenTabelle('task', false);">Task  &#8593 &#8595 </th>
+						<th onclick="sortierenTabelle('workload', false);">Workload  &#8593 &#8595 </th>
+						<th>Action</th> 
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</section>
+		<section id="tasks" class="content">
+			<form id="tasks-form">
+				Type:
+				<select name = "type" id="type">
+				<option value="hash-md5">Hash MD5</option>
+				<option value="hash-sha256">Hash-sha256</option>
+				<option value="crack-md5">Crack-MD5</option>
+				</select>
+				Data:
+				<input type="text" name ="inhaltDesTasks" id="inhaltDesTasks">
+				<button type="button" id="sendTask" class="tasksButton" onclick="senden();">Send Task</button>
+			</form>
+			<table id="tasks-overview">
+				<thead>
+					<tr>
+						<th onclick="sortierenTasks('id', false);">ID  &#8593 &#8595 </th>
+						<th onclick="sortierenTasks('type', false);">Type  &#8593 &#8595 </th>
+						<th>Input</th>
+						<th>Output</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</section>
+	</main>
 
-<footer>Fuelltext</footer>
-
+	<footer>Entworfen von SaReLa</footer>
+	
+	<!-- hier werden die skripts ausgeführt welche beim seiteneintritt geladen werden und keine Onclick methode nutzen-->
+	<script>
+		tabelleninhalt();
+		taskTabelleninhalt();
+		aktualisieren();
+	</script>
 </body>
 </html>
-<!--
-Refreshzeit nur aus testgründen so niedrig!!
-todo:
--Interface:
---Transition zwischen Sections (App States)
---GET Integration zum CNC Server ( /api/Status )
--Tabelle:
---Sortierbare tabelle
---Buttons
---Inhalte via http://botnet.artificial.engineering:8080/api/Status
---Anpassung des Farbschemas und des Cell Paddings
---Buttons Tooglebar
--Menu:
---Hover und active anpassung
--->
